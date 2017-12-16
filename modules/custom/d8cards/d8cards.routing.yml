@@ -1,0 +1,7 @@
+d8cards.dcardpage:
+  path: '/d8card/custom-page'
+  defaults:
+    _controller: '\Drupal\d8cards\Controller\D8pageController::d8page'
+    _title: 'D8 custom page'
+  requirements:
+    _permission: 'access content'

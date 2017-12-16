@@ -1,0 +1,5 @@
+name: D8 Cards
+description: Custom module for D8 cards
+type: module
+core: 8.x
+package: D8 Cards
