@@ -1,0 +1,4 @@
+d8 custom permission:
+  title: 'Access D8 cards config form'
+  description: 'Access D8 cards config form'
+  restrict access: true

@@ -5,3 +5,19 @@ d8cards.dcardpage:
     _title: 'D8 custom page'
   requirements:
     _permission: 'access content'
+
+d8cards.config:
+  path: '/d8cards/config'
+  defaults:
+    _form: '\Drupal\d8cards\Form\D8Form'
+    _title: 'D8 Configuration Form'
+  requirements:
+    _permission: 'd8 custom permission'
+
+d8cards.smtpconfig:
+  path: '/d8cards/smtpconfig'
+  defaults:
+    _form: '\Drupal\d8cards\Form\SmtpSettings'
+    _title: 'SMTP Credentials'
+  requirements:
+    _permission: 'administer content'
