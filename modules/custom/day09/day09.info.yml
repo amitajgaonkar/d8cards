@@ -1,0 +1,5 @@
+name: Day 9 Assets Demo
+description: Demo module to learn assets attaching
+type: module
+core: 8.x
+package: D8 Cards

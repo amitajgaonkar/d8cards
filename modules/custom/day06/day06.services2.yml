@@ -1,0 +1,3 @@
+services:
+  day06.myservice:
+    class = Drupal\day06\CustomService

@@ -1,0 +1,5 @@
+name: D8 cards day 6 assignment
+description: Assignment of day 6
+type: module
+core: 8.x
+package: D8 Cards

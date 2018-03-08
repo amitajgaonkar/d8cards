@@ -1,0 +1,37 @@
+<?php
+
+/*
+ * Implement hook_cron
+ * 
+ * */
+
+//~ function d8cards_cron() {
+function d8cards_entity_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {   
+  //Get list of block of type "stock_exchange_rate_card"
+  if ($entity instanceof \Drupal\node\NodeInterface) {
+    $blocks = \Drupal::entityTypeManager()
+      ->getStorage('block_content')
+      ->loadByProperties(array('type' => 'stock_exchange_rate_card'));
+
+    foreach($blocks as $block){
+      $symbol = $block->field_symbol->value;
+      $url = 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol='.$symbol.'&callback=myFunction';
+      $client = \Drupal::httpClient();
+      try{
+        $request = $client->get($url);
+        $response = $request->getBody()->getContents();
+        $response = json_decode($response);
+        if(isset($response->Status) && $response->Status == 'SUCCESS' ) {
+          $block->set('field_last_price', $response->LastPrice);
+          $block->set('field_change', $response->Change);
+          $block->save;
+        }
+      }
+      catch(RequestException $e){
+        watchdog_exception('d8cards', $e->getMessage());
+      }
+    }
+  }
+ 
+   
+}

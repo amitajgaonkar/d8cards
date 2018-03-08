@@ -1,0 +1,19 @@
+<?php
+function day07_user_insert($account) {
+  //Get queue factory required to intantiate queue interface
+  $queue_factory = \Drupal::service('queue');
+  $queue = $queue_factory->get('welcome_mail');
+  $email = new \stdClass();
+  $email->email = $account->getEmail();
+  //Create queue items
+  $queue->createItem($email);
+}
+
+
+function day07_mail($key, &$message, $params) {
+  switch($key) {
+    case 'welcome_user':
+      $message['subject'] = 'Welcome User';
+      $message['body'][] = 'Welcome to our site.';
+  }
+}
